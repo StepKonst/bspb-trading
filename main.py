@@ -23,5 +23,11 @@ async def lifespan(app: FastAPI):
 
 app = FastAPI(lifespan=lifespan)
 
+
+@app.get("/")
+async def root():
+    return {"message": "Welcome to the FastAPI app. Visit /docs for API documentation."}
+
+
 app.include_router(data_operations, prefix="/api", tags=["data"])
 app.include_router(crud_operations, prefix="/api", tags=["orders"])
